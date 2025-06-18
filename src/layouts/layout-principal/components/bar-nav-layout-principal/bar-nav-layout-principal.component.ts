@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuItem } from 'primeng/api';
-import { RouterLink } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { RippleModule } from 'primeng/ripple';
 
 @Component({
   selector: 'app-bar-nav-layout-principal',
-  imports: [ButtonModule, MenubarModule,RouterLink,RippleModule],
+  imports: [ButtonModule, MenubarModule,RouterModule,RippleModule],
   templateUrl: './bar-nav-layout-principal.component.html',
   styleUrl: './bar-nav-layout-principal.component.scss',
 })
@@ -15,19 +15,19 @@ export class BarNavLayoutPrincipalComponent {
   items: MenuItem[] = [
     {
       label: 'Sintomas',
-      route:'/auth'
+      route:'/principal/sintomas'
     },
     {
       label: 'Historial',
-      route:'/auth'
+      route:'/principal/historial'
     },
     {
       label: 'Hospitales',
-      route:'/auth'
+      route:'/principal/hospitales'
     },
     {
       label: 'Ayuda',
-      route:'/auth'
+      route:'/principal/ayuda'
     },
   ];
 }

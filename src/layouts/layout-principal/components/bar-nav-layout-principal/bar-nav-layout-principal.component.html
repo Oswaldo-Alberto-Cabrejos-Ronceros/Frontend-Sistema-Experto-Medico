@@ -1,7 +1,7 @@
 <p-menubar [model]="items" styleClass=" bg-primary border-none rounded">
   <ng-template #item let-item>
     <ng-container>
-      <a pRipple [routerLink]="item.route" class="p-menubar-item-link text-surface-0 bg-primary transition-colors duration-300 hover:bg-primary-400">
+      <a pRipple [routerLink]="item.route" routerLinkActive="bg-primary-400" class="p-menubar-item-link text-surface-0 bg-primary transition-colors duration-300 hover:bg-primary-400">
         <span >{{ item.label }}</span>
       </a>
     </ng-container>
