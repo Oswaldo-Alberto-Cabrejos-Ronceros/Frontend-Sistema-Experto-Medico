@@ -4,6 +4,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { providePrimeNG } from 'primeng/config';
 import MyPreset from '../mypreset';
 import { routes } from './app.routes';
+//import locale
+import esLocale from '../assets/locale/es.json'
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -11,6 +13,9 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimationsAsync(),
     providePrimeNG({
+      ripple: true,
+      inputVariant: 'filled',
+      translation:esLocale,
       theme: {
         preset: MyPreset,
         options: {
