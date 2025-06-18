@@ -1,0 +1,60 @@
+<div class="w-md">
+  <p-card>
+    <!-- title -->
+    <ng-template #title>
+      Registro
+    </ng-template>
+    <!-- content -->
+    <div class="w-full flex flex-col gap-2">
+      <!-- name -->
+      <p>Nombres</p>
+      <p-floatLabel variant="in">
+        <input class="w-full" type="text" pInputText id="in_label_name" autocomplete="off" />
+        <label for="in_label_name">Nombres</label>
+      </p-floatLabel>
+
+      <!-- lastnames -->
+
+      <p>Apellidos</p>
+      <p-floatLabel variant="in">
+        <input class="w-full" type="text" pInputText id="in_label_lastname" autocomplete="off" />
+        <label for="in_label_lastname">Apellidos</label>
+      </p-floatLabel>
+
+      <!-- gender -->
+      <p>Género</p>
+      <p-floatlabel class="w-full" variant="in">
+        <p-select inputId="in_label_gender" [options]="genders" optionLabel="label" styleClass="w-full" />
+        <label for="in_label_gender">Género</label>
+      </p-floatlabel>
+      <!-- birthDate -->
+      <p>Fecha de nacimiento</p>
+      <p-floatlabel variant="in">
+        <p-datepicker inputId="in_label" styleClass="w-full" inputStyleClass="w-full" showIcon iconDisplay="input" />
+        <label for="in_label_birthdate">Fecha de nacimiento</label>
+      </p-floatlabel>
+      <!-- email -->
+      <p>Correo</p>
+      <p-floatLabel variant="in">
+        <input class="w-full" type="text" pInputText id="in_label_email" autocomplete="off" />
+        <label for="in_label_email">Correo</label>
+      </p-floatLabel>
+      <!-- password -->
+      <p>Contraseña</p>
+      <p-floatLabel variant="in">
+        <p-password styleClass="w-full" inputStyleClass="w-full" toggleMask inputId="in_label_password" />
+        <label for="in_label_password">Contraseña</label>
+      </p-floatLabel>
+      <!-- confirm password -->
+      <p>Confirmar contraseña</p>
+      <p-floatLabel variant="in">
+        <p-password styleClass="w-full" inputStyleClass="w-full" toggleMask inputId="in_label_confirm_password" />
+        <label for="in_label_confirm_password">Confirmar contraseña</label>
+      </p-floatLabel>
+    </div>
+    <!-- footer -->
+    <ng-template #footer>
+      <p-button label="Registrarse" rounded styleClass="w-full" />
+    </ng-template>
+  </p-card>
+</div>
