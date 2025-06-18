@@ -11,6 +11,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimationsAsync(),
     providePrimeNG({
+      ripple: true,
       theme: {
         preset: MyPreset,
         options: {
@@ -19,6 +20,7 @@ export const appConfig: ApplicationConfig = {
             order: 'theme, base, primeng, utilities',
           },
           darkModeSelector: '.dark',
+
         },
       },
     }),
