@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { LoginPageComponent } from '../pages/login-page/login-page.component';
 import { RegisterPageComponent } from '../pages/register-page/register-page.component';
+import { LayoutPrincipalComponent } from '../layouts/layout-principal/layout-principal.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
@@ -21,5 +22,9 @@ export const routes: Routes = [
         component: RegisterPageComponent,
       },
     ],
+  },
+  {
+    path: 'principal',
+    component: LayoutPrincipalComponent,
   },
 ];
