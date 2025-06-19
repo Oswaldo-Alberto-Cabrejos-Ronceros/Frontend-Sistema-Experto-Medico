@@ -7,7 +7,9 @@ import { RippleModule } from 'primeng/ripple';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { DrawerModule } from 'primeng/drawer';
 import { CommonModule } from '@angular/common';
+import { User } from '../../../../models/User';
 
 @Component({
   selector: 'app-bar-nav-layout-principal',
@@ -19,6 +21,7 @@ import { CommonModule } from '@angular/common';
     ConfirmDialog,
     TieredMenuModule,
     CommonModule,
+    DrawerModule
   ],
   templateUrl: './bar-nav-layout-principal.component.html',
   styleUrl: './bar-nav-layout-principal.component.scss',
@@ -27,6 +30,8 @@ import { CommonModule } from '@angular/common';
 export class BarNavLayoutPrincipalComponent {
   //inyectamos confirmationService
   constructor(private confirmationService: ConfirmationService) {}
+  //for show drawer
+  showDrawerPefil:boolean=false;
   items: MenuItem[] = [
     {
       label: 'Sintomas',
@@ -50,7 +55,7 @@ export class BarNavLayoutPrincipalComponent {
     {
       label: 'Ver perfil',
       icon: 'pi pi-user',
-      route: '/auth',
+      route: '/',
     },
     {
       label: 'Cerrar sesión',
@@ -84,4 +89,30 @@ export class BarNavLayoutPrincipalComponent {
       },
     });
   }
+  // user
+    user: User = {
+    names: 'Oswaldo Alberto',
+    lastnames: 'Cabrejos Ronceros',
+    gender: 'Masculino',
+    birthdate: '05/10/2004',
+  };
+
+  itemsPerfil:{title:string,key: keyof User}[]=[
+    {
+      title:'Nombres',
+      key:'names'
+    },
+    {
+      title:'Apellidos',
+      key:'lastnames'
+    },
+    {
+      title:'Género',
+      key:'gender'
+    },
+    {
+      title:'Fecha de nacimiento',
+      key:'birthdate'
+    }
+  ]
 }

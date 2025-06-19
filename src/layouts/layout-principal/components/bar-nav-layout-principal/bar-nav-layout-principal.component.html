@@ -1,4 +1,11 @@
 <p-confirm-dialog/>
+<p-drawer [(visible)]="showDrawerPefil" header="Perfil">
+  <div *ngFor="let item of itemsPerfil" class="mb-2">
+    <p class="font-bold mb-0.5">{{item.title}}</p>
+    <p>{{user[item.key]}}</p>
+  </div>
+
+</p-drawer>
 <p-menubar [model]="items" styleClass=" bg-primary border-none rounded">
   <ng-template #item let-item>
     <ng-container>
@@ -13,10 +20,10 @@
     <p-tieredMenu #menu [model]="perfilMenuItems" [popup]="true">
       <ng-template #item let-item>
         <ng-container *ngIf="item.route; else withoutUrl">
-          <a pRipple [routerLink]="item.route" [href]="item.href" class="p-tieredmenu-item-link">
+          <div pRipple class="p-tieredmenu-item-link" (click)="showDrawerPefil=true">
             <span [class]="item.icon"></span>
             <span class="ml-2">{{ item.label }}</span>
-          </a>
+          </div>
         </ng-container>
 
         <ng-template #withoutUrl>
