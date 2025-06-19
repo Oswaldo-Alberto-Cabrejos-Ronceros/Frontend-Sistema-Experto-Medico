@@ -1,0 +1,11 @@
+<p-card styleClass="w-sm">
+<ng-template #header>
+<img [alt]="diagnosisName" class="w-full object-contain h-40" [src]="diagnosisImageUrl"/>
+</ng-template>
+<ng-template #title>
+<p>{{diagnosisName}}</p>
+</ng-template>
+<ng-template #subtitle>
+<p>{{diagnosisDate}}</p>
+</ng-template>
+</p-card>
