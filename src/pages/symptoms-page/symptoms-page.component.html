@@ -1,1 +1,217 @@
-<p>symptoms-page works!</p>
+<div class="w-full min-h-screen flex flex-col gap-2">
+  <h3 class="h3">Ingrese sus sintomas</h3>
+  <p-stepper [value]="1" class="basis-[50rem]">
+    <p-step-list>
+      <p-step [value]="1">Sintomas</p-step>
+      <p-step [value]="2">Duración</p-step>
+      <p-step [value]="3">Gravedad</p-step>
+      <p-step [value]="4">Resumen</p-step>
+    </p-step-list>
+    <!-- paneles -->
+    <p-step-panels>
+      <!-- panel sintomas -->
+      <p-step-panel [value]="1">
+        <ng-template #content let-activateCallback="activateCallback">
+          <div class="flex flex-col min-h-48">
+            <p class="textLg">Seleccione sus sintomas</p>
+            <!-- buscador mas select -->
+            <div class="flex gap-2 mt-3">
+              <!-- buscador -->
+              <p-inputgroup class="max-w-sm">
+                <p-inputgroup-addon>
+                  <i class="pi pi-search"></i>
+                </p-inputgroup-addon>
+                <p-floatlabel variant="in">
+                  <input pInputText id="in_label_search" />
+                  <label for="in_label_search">Buscar sintomas</label>
+                </p-floatlabel>
+              </p-inputgroup>
+              <!-- select for categories symptoms -->
+              <p-floatlabel class="w-full max-w-xs" variant="in">
+                <p-select
+                  inputId="in_label_categories_symptoms"
+                  [options]="categoriesSymptoms"
+                  optionLabel="label"
+                  styleClass="w-full"
+                />
+                <label for="in_label_categories_symptoms">Categorias</label>
+              </p-floatlabel>
+            </div>
+            <!-- symptoms checkboxs -->
+            <div
+              class="w-full py-3 flex-1 grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2"
+            >
+              <div *ngFor="let symptom of symptoms" class="flex items-center">
+                <p-checkbox
+                  [inputId]="symptom.key"
+                  name="group"
+                  [value]="symptom"
+                  [(ngModel)]="selectedSymptoms"
+                />
+                <label [for]="symptom.key" class="ml-2">
+                  {{ symptom.name }}
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="flex pt-6 justify-end">
+            <p-button
+              label="Siguiente"
+              icon="pi pi-arrow-right"
+              iconPos="right"
+              rounded
+              (onClick)="activateCallback(2)"
+            />
+          </div>
+        </ng-template>
+      </p-step-panel>
+      <!-- panel duracion -->
+      <p-step-panel [value]="2">
+        <ng-template #content let-activateCallback="activateCallback">
+          <div class="flex flex-col min-h-48">
+            <p class="textLg">Ingrese la duración de sus sintomas</p>
+            <div class="w-full py-3 flex-1 flex flex-col gap-2">
+              <!-- sintomas mas duracion -->
+              <div
+                class="flex gap-2 items-center"
+                *ngFor="let symptom of selectedSymptoms"
+              >
+                <p>{{ symptom.name }}</p>
+                <!-- select for hours -->
+                <p-floatlabel class="w-full max-w-xs" variant="in">
+                  <p-select
+                    inputId="in_label_hours"
+                    [options]="hoursOptions"
+                    optionLabel="label"
+                    styleClass="w-full"
+                  />
+                  <label for="in_label_hours">Horas</label>
+                </p-floatlabel>
+                <!-- select for days -->
+                <p-floatlabel class="w-full max-w-xs" variant="in">
+                  <p-select
+                    inputId="in_label_days"
+                    [options]="daysOptions"
+                    optionLabel="label"
+                    styleClass="w-full"
+                  />
+                  <label for="in_label_days">Dias</label>
+                </p-floatlabel>
+              </div>
+            </div>
+          </div>
+          <div class="flex pt-6 justify-between">
+            <p-button
+              label="Atras"
+              severity="secondary"
+              icon="pi pi-arrow-left"
+              rounded
+              (onClick)="activateCallback(1)"
+            />
+            <p-button
+              label="Siguiente"
+              icon="pi pi-arrow-right"
+              iconPos="right"
+              rounded
+              (onClick)="activateCallback(3)"
+            />
+          </div>
+        </ng-template>
+      </p-step-panel>
+      <!-- gravedad -->
+      <p-step-panel [value]="3">
+        <ng-template #content let-activateCallback="activateCallback">
+          <div class="flex flex-col min-h-48">
+            <p class="textLg">Ingrese la gravedad de sus sintomas</p>
+            <div class="w-full py-3 flex-1 flex flex-col gap-2">
+              <!-- sintomas mas gravedad -->
+              <div
+                class="flex gap-2 items-center"
+                *ngFor="let symptom of selectedSymptoms"
+              >
+                <p>{{ symptom.name }}</p>
+                <div class="card flex justify-center">
+                  <p-rating stars="10">
+                    <ng-template #cancelicon>
+                      <img
+                        src="https://primefaces.org/cdn/primeng/images/demo/rating/cancel.png"
+                        height="24"
+                        width="24"
+                      />
+                    </ng-template>
+                    <ng-template #onicon>
+                      <img
+                        src="https://primefaces.org/cdn/primeng/images/demo/rating/custom-icon-active.png"
+                        height="24"
+                        width="24"
+                      />
+                    </ng-template>
+                    <ng-template #officon>
+                      <img
+                        src="https://primefaces.org/cdn/primeng/images/demo/rating/custom-icon.png"
+                        height="24"
+                        width="24"
+                      />
+                    </ng-template>
+                  </p-rating>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex pt-6 justify-between">
+            <p-button
+              label="Atras"
+              severity="secondary"
+              icon="pi pi-arrow-left"
+              rounded
+              (onClick)="activateCallback(2)"
+            />
+            <p-button
+              label="Siguiente"
+              icon="pi pi-arrow-right"
+              iconPos="right"
+              rounded
+              (onClick)="activateCallback(4)"
+            />
+          </div>
+        </ng-template>
+      </p-step-panel>
+      <!-- resumen -->
+      <p-step-panel [value]="4">
+        <ng-template #content let-activateCallback="activateCallback">
+          <div class="flex flex-col min-h-48">
+            <p class="textLg">Resumen de sintomas</p>
+            <div class="w-full py-3 flex-1 flex flex-col gap-2">
+              <div
+                class="flex flex-col gap-2"
+                *ngFor="let symptom of selectedSymptoms"
+              >
+                <p>{{ symptom.name }}</p>
+                <div class="flex gap-2">
+                  <p>Duración 1h</p>
+                  <p>Gravedad 1</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex pt-6 justify-between">
+            <p-button
+              label="Atras"
+              severity="secondary"
+              icon="pi pi-arrow-left"
+              rounded
+              (onClick)="activateCallback(3)"
+            />
+            <p-button
+              label="Enviar"
+              icon="pi pi-send"
+              severity="success"
+              rounded
+              iconPos="right"
+            />
+          </div>
+        </ng-template>
+      </p-step-panel>
+    </p-step-panels>
+  </p-stepper>
+</div>

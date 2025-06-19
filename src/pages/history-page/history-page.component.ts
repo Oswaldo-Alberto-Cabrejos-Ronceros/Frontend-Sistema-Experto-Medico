@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-history-page',
@@ -7,5 +7,4 @@ import { Component } from '@angular/core';
   styleUrl: './history-page.component.scss'
 })
 export class HistoryPageComponent {
-
 }
