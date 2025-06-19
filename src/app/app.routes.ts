@@ -6,6 +6,7 @@ import { SymptomsPageComponent } from '../pages/symptoms-page/symptoms-page.comp
 import { HistoryPageComponent } from '../pages/history-page/history-page.component';
 import { HospitalsPageComponent } from '../pages/hospitals-page/hospitals-page.component';
 import { HelpPageComponent } from '../pages/help-page/help-page.component';
+import { DignosisUnitaryPageComponent } from '../pages/dignosis-unitary-page/dignosis-unitary-page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
@@ -41,8 +42,16 @@ export const routes: Routes = [
         component: SymptomsPageComponent,
       },
       {
+        path: 'sintomas/diagnostico',
+        component: DignosisUnitaryPageComponent,
+      },
+      {
         path: 'historial',
         component: HistoryPageComponent,
+      },
+      {
+        path: 'historial/diagnostico',
+        component: DignosisUnitaryPageComponent,
       },
       {
         path: 'hospitales',

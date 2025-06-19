@@ -1,20 +1,30 @@
 <div class="w-full min-h-screen flex flex-col gap-2">
-    <h3 class="h3">Posible diagnostico</h3>
-    <!-- principal -->
-    <div class="w-full grid grid-cols-1 md:grid-cols-2">
-        <!-- contenido -->
-        <div>
-            <p>{{diagnosis.content}}</p>
-        </div>
-        <!-- imagen -->
-        <div class="flex items-center justify-center">
-            <p-image [src]="diagnosis.imageUrl" alt="Diagnostico" [preview]="true"/>
-        </div>
-        <!-- tratamiento -->
-         <div class="flex flex-col gap-2">
-            <ul>
-                <li></li>
-            </ul>
-         </div>
+  <h3 class="h3">Posible diagnostico</h3>
+  <!-- principal -->
+  <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-2">
+    <!-- contenido -->
+    <div>
+      <p>{{diagnosis.content}}</p>
     </div>
+    <!-- imagen -->
+    <div class="flex items-center justify-center">
+      <p-image [src]="diagnosis.imageUrl" imageClass="rounded-xl" alt="Diagnostico" [preview]="true" />
+    </div>
+    <!-- tratamiento -->
+    <div class="flex flex-col gap-2">
+      <h3 class="h3">Tratamiento</h3>
+      <ul>
+        <li class="list-disc list-inside" *ngFor="let tratamiento of diagnosis.tratamientos">{{tratamiento}}</li>
+      </ul>
+    </div>
+    <!-- pasos a seguir -->
+    <div class="flex flex-col gap-2">
+      <h3 class="h3">Pasos a seguir</h3>
+      <ul>
+        <li class="list-disc list-inside" *ngFor="let paso of diagnosis.pasosSeguir">
+          {{paso}}
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
