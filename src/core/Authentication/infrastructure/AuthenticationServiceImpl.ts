@@ -9,7 +9,7 @@ import { HttpClient } from "@angular/common/http";
 export class AuthenticationServiceImpl implements AuthenticationService{
     
       //url
-      private readonly apiUrl = `/${environment.apiUrl}/auth`;
+      private readonly apiUrl = `${environment.apiUrl}/auth`;
 
         constructor(private httpClient: HttpClient) {}
 
