@@ -6,9 +6,10 @@ import MyPreset from '../mypreset';
 import { routes } from './app.routes';
 //import locale
 import esLocale from '../assets/locale/es.json'
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
-  providers: [
+  providers: [provideHttpClient(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideAnimationsAsync(),

@@ -43,12 +43,12 @@
             >
               <div *ngFor="let symptom of symptoms" class="flex items-center">
                 <p-checkbox
-                  [inputId]="symptom.key"
+                  [inputId]="symptom.id.toString()"
                   name="group"
                   [value]="symptom"
                   [(ngModel)]="selectedSymptoms"
                 />
-                <label [for]="symptom.key" class="ml-2">
+                <label [for]="symptom.id" class="ml-2">
                   {{ symptom.name }}
                 </label>
               </div>

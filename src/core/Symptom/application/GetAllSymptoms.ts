@@ -3,12 +3,9 @@ import { SymptomService } from "../domain/services/SymptomService";
 import { Symptom } from "../domain/models/Symptom";
 import { Inject, Injectable } from "@angular/core";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class GetAllSymtoms{
     constructor(@Inject(SymptomService) private symptomService: SymptomService){}
-
     execute():Observable<Symptom[]>{
         return this.symptomService.getAllSymtoms()
     }

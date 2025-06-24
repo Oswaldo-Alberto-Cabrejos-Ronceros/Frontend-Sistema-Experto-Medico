@@ -7,7 +7,7 @@ import { environment } from '../../../environment/environment';
 @Injectable()
 export class SymptomServiceImpl implements SymptomService {
   //url
-  private readonly apiUrl = `${environment.apiUrl}/symptom`;
+  private readonly apiUrl = `${environment.apiUrl}/sintomas`;
   constructor(private httpClient: HttpClient) {}
   getAllSymtoms(): Observable<Symptom[]> {
     return this.httpClient.get<Symptom[]>(this.apiUrl);
