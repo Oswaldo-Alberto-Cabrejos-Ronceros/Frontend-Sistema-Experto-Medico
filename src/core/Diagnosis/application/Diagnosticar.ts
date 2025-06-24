@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { DiagnosisService } from '../domain/services/DiagnosisService';
 import { Observable } from 'rxjs';
-import { Diagnosis } from '../domain/models/Diagnosis';
+import { DiagnosisResponse } from '../domain/models/Diagnosis';
 
 @Injectable()
 export class Diagnosticar {
@@ -10,7 +10,7 @@ export class Diagnosticar {
     private diagnosisService: DiagnosisService
   ) {}
 
-  execute(symptomsId: number[]): Observable<Diagnosis> {
+  execute(symptomsId: number[]): Observable<DiagnosisResponse> {
     return this.diagnosisService.diagnosticar(symptomsId);
   }
 }

@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Diagnosis } from '../domain/models/Diagnosis';
+import { Diagnosis, DiagnosisResponse } from '../domain/models/Diagnosis';
 import { DiagnosisService } from '../domain/services/DiagnosisService';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environment/environment';
@@ -12,8 +12,8 @@ export class DiagnosisServiceImpl implements DiagnosisService {
 
   constructor(private httpClient: HttpClient) {}
 
-  diagnosticar(symptomsId: number[]): Observable<Diagnosis> {
-    return this.httpClient.post<Diagnosis>(
+  diagnosticar(symptomsId: number[]): Observable<DiagnosisResponse> {
+    return this.httpClient.post<DiagnosisResponse>(
       `${this.apiUrl}/diagnosticar`,
       symptomsId
     );

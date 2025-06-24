@@ -3,3 +3,7 @@ export interface Diagnosis{
     name:string,
     image_url:string
 }
+
+export interface DiagnosisResponse{
+  diagnostico_id:number
+}
