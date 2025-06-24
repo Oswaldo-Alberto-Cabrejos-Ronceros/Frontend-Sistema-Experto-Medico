@@ -12,10 +12,13 @@ export class DiagnosisServiceImpl implements DiagnosisService {
 
   constructor(private httpClient: HttpClient) {}
 
-  diagnosticar(symptomsId: number[]): Observable<DiagnosisResponse> {
+  diagnosticar(symptomsId: string[]): Observable<DiagnosisResponse> {
+    const symtomsIdRequest:{sintomas:string[]}={
+      sintomas:symptomsId
+    }
     return this.httpClient.post<DiagnosisResponse>(
-      `${this.apiUrl}/diagnosticar`,
-      symptomsId
+      `${this.apiUrl}/diagnostico`,
+      symtomsIdRequest
     );
   }
   getDiagnosisById(diagnosisId: number): Observable<Diagnosis> {

@@ -10,7 +10,7 @@ export class Diagnosticar {
     private diagnosisService: DiagnosisService
   ) {}
 
-  execute(symptomsId: number[]): Observable<DiagnosisResponse> {
+  execute(symptomsId: string[]): Observable<DiagnosisResponse> {
     return this.diagnosisService.diagnosticar(symptomsId);
   }
 }

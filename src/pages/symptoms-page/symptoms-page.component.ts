@@ -14,6 +14,9 @@ import { SymptomService } from '../../core/Symptom/domain/services/SymptomServic
 import { SymptomServiceImpl } from '../../core/Symptom/infrastructure/SymptomServiceImpl';
 import { GetAllSymtoms } from '../../core/Symptom/application/GetAllSymptoms';
 import { Symptom } from '../../core/Symptom/domain/models/Symptom';
+import { DiagnosisService } from '../../core/Diagnosis/domain/services/DiagnosisService';
+import { DiagnosisServiceImpl } from '../../core/Diagnosis/infrastructure/DiagnosisServiceImpl';
+import { Diagnosticar } from '../../core/Diagnosis/application/Diagnosticar';
 
 @Component({
   selector: 'app-symptoms-page',
@@ -38,10 +41,15 @@ import { Symptom } from '../../core/Symptom/domain/models/Symptom';
       useClass: SymptomServiceImpl,
     },
     GetAllSymtoms,
+    {
+      provide:DiagnosisService,
+      useClass:DiagnosisServiceImpl
+    },
+    Diagnosticar
   ],
 })
 export class SymptomsPageComponent implements OnInit {
-  constructor(private getAllSymtoms: GetAllSymtoms) {}
+  constructor(private getAllSymtoms: GetAllSymtoms, private diagnosticar:Diagnosticar) {}
   ngOnInit(): void {
     this.getAllSymtoms.execute().subscribe({
       next: (data) => {
@@ -73,7 +81,7 @@ export class SymptomsPageComponent implements OnInit {
   ];
 
   //for sumptoms selecteds
-  selectedSymptoms: { name: string; key: string }[] = [];
+  selectedSymptoms: Symptom[] = [];
 
   hoursOptions: { label: string; value: number }[] = [
     {
@@ -120,4 +128,18 @@ export class SymptomsPageComponent implements OnInit {
       value: 5,
     },
   ];
+  //for send symptoms
+  sendSymptoms=()=>{
+    console.log(this.selectedSymptoms)
+    const symptomsIds:string[]=this.selectedSymptoms.map((symptom)=>symptom.id.toString())
+    console.log(symptomsIds)
+    this.diagnosticar.execute(symptomsIds).subscribe({
+      next:(data)=>{
+        console.log('Diagnostico',data)
+      },
+      error:(err)=>{
+        console.error(err)
+      }
+    })
+  }
 }
