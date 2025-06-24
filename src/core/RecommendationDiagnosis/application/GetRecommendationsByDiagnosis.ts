@@ -3,9 +3,7 @@ import { Observable } from 'rxjs';
 import { RecomendationDiagnosis } from '../domain/models/RecommendationDiagnosis';
 import { RecomendationDiagnosisService } from '../domain/services/RecommendationDiagnosisService';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class GetRecommendationsByDiagnosis {
   constructor(
     @Inject(RecomendationDiagnosisService)

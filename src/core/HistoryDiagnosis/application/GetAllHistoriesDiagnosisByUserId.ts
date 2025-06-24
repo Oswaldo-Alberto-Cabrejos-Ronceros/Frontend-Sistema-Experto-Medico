@@ -3,7 +3,7 @@ import { HistoryDiagnosisService } from '../domain/services/HistoryDiagnosisServ
 import { Observable } from 'rxjs';
 import { HistoryDiagnosis } from '../domain/models/HistoryDiagnosis';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class GetAllHistoriesDiagnosisByUserId {
   constructor(
     @Inject(HistoryDiagnosisService)
