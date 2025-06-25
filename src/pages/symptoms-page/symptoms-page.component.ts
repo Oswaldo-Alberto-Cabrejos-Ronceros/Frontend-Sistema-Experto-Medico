@@ -17,6 +17,7 @@ import { Symptom } from '../../core/Symptom/domain/models/Symptom';
 import { DiagnosisService } from '../../core/Diagnosis/domain/services/DiagnosisService';
 import { DiagnosisServiceImpl } from '../../core/Diagnosis/infrastructure/DiagnosisServiceImpl';
 import { Diagnosticar } from '../../core/Diagnosis/application/Diagnosticar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-symptoms-page',
@@ -49,7 +50,7 @@ import { Diagnosticar } from '../../core/Diagnosis/application/Diagnosticar';
   ],
 })
 export class SymptomsPageComponent implements OnInit {
-  constructor(private getAllSymtoms: GetAllSymtoms, private diagnosticar:Diagnosticar) {}
+  constructor(private getAllSymtoms: GetAllSymtoms, private diagnosticar:Diagnosticar,private router:Router) {}
   ngOnInit(): void {
     this.getAllSymtoms.execute().subscribe({
       next: (data) => {
@@ -136,6 +137,7 @@ export class SymptomsPageComponent implements OnInit {
     this.diagnosticar.execute(symptomsIds).subscribe({
       next:(data)=>{
         console.log('Diagnostico',data)
+        this.router.navigate(['/principal/sintomas/diagnostico',data.diagnostico_id])
       },
       error:(err)=>{
         console.error(err)

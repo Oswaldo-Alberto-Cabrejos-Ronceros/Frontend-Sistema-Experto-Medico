@@ -42,7 +42,7 @@ export const routes: Routes = [
         component: SymptomsPageComponent,
       },
       {
-        path: 'sintomas/diagnostico',
+        path: 'sintomas/diagnostico/:id',
         component: DignosisUnitaryPageComponent,
       },
       {

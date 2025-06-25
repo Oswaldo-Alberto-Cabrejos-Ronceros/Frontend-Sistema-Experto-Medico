@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ImageModule } from 'primeng/image';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dignosis-unitary-page',
@@ -8,7 +9,13 @@ import { CommonModule } from '@angular/common';
   templateUrl: './dignosis-unitary-page.component.html',
   styleUrl: './dignosis-unitary-page.component.scss',
 })
-export class DignosisUnitaryPageComponent {
+export class DignosisUnitaryPageComponent implements OnInit{
+  constructor(private route: ActivatedRoute){}
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id')
+    console.log(id)
+  }
+
   diagnosis: { content: string;imageUrl:string; tratamientos: string[]; pasosSeguir: string[] } =
     {
       content: `Lorem ipsum dolor sit amet consectetur adipiscing elit purus
