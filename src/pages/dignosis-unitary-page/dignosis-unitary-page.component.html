@@ -1,5 +1,5 @@
 <div class="w-full min-h-screen flex flex-col gap-2">
-  <h3 class="h3">Posible diagnostico</h3>
+  <h3 class="h3">{{diagnosisGet.name}}</h3>
   <!-- principal -->
   <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-2">
     <!-- contenido -->
@@ -8,13 +8,13 @@
     </div>
     <!-- imagen -->
     <div class="flex items-center justify-center">
-      <p-image [src]="diagnosis.imageUrl" imageClass="rounded-xl" alt="Diagnostico" [preview]="true" />
+      <p-image [src]="diagnosisGet.image_url" imageClass="rounded-xl" alt="Diagnostico" [preview]="true" />
     </div>
     <!-- tratamiento -->
     <div class="flex flex-col gap-2">
       <h3 class="h3">Tratamiento</h3>
       <ul>
-        <li class="list-disc list-inside" *ngFor="let tratamiento of diagnosis.tratamientos">{{tratamiento}}</li>
+        <li class="list-disc list-inside" *ngFor="let tratamiento of diagnosisRecomendation">{{tratamiento.content}}</li>
       </ul>
     </div>
     <!-- pasos a seguir -->
