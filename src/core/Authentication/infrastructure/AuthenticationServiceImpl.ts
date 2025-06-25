@@ -7,7 +7,7 @@ import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class AuthenticationServiceImpl implements AuthenticationService{
-    
+
       //url
       private readonly apiUrl = `${environment.apiUrl}/auth`;
 
@@ -18,7 +18,7 @@ export class AuthenticationServiceImpl implements AuthenticationService{
         return this.httpClient.post<AuthResponse>(`${this.apiUrl}/login`,LoginRequest)
     }
     register(userRequest: UserRequest): Observable<AuthResponse> {
-        return this.httpClient.post<AuthResponse>(`${this.apiUrl}/regisster`,userRequest)
+        return this.httpClient.post<AuthResponse>(`${this.apiUrl}/register`,userRequest)
     }
-    
+
 }
