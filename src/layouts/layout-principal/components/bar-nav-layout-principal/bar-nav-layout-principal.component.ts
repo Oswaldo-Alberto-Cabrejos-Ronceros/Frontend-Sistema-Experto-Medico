@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuItem } from 'primeng/api';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { RippleModule } from 'primeng/ripple';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { ConfirmDialog } from 'primeng/confirmdialog';
@@ -29,7 +29,7 @@ import { User } from '../../../../models/User';
 })
 export class BarNavLayoutPrincipalComponent {
   //inyectamos confirmationService
-  constructor(private confirmationService: ConfirmationService) {}
+  constructor(private confirmationService: ConfirmationService,private router:Router) {}
   //for show drawer
   showDrawerPefil:boolean=false;
   items: MenuItem[] = [
@@ -82,13 +82,18 @@ export class BarNavLayoutPrincipalComponent {
         severity: 'danger',
       },
       accept: () => {
-        console.log('Si');
+        this.logOut()
       },
       reject: () => {
         console.log('No');
       },
     });
   }
+//for logout
+logOut=()=>{
+this.router.navigate(['/'])
+}
+
   // user
     user: User = {
     names: 'Oswaldo Alberto',
