@@ -3,9 +3,8 @@ import { LoginCardComponent } from './components/login-card/login-card.component
 import { AuthenticationService } from '../../core/Authentication/domain/services/AuthenticationService';
 import { AuthenticationServiceImpl } from '../../core/Authentication/infrastructure/AuthenticationServiceImpl';
 import { Login } from '../../core/Authentication/application/Login';
-import { AuthResponse, LoginRequest } from '../../core/Authentication/domain/models/Authentication';
+import { LoginRequest } from '../../core/Authentication/domain/models/Authentication';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-login-page',
   imports: [LoginCardComponent],

@@ -9,8 +9,7 @@ import { SelectModule } from 'primeng/select';
 import {
   ReactiveFormsModule,
   FormGroup,
-  FormControl,
-  Validators,
+  FormControl
 } from '@angular/forms';
 import { UserRequest } from '../../../../core/Authentication/domain/models/Authentication';
 

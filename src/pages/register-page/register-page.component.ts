@@ -26,7 +26,7 @@ export class RegisterPageComponent {
     console.log(registerRequet)
     this.register.execute(registerRequet).subscribe({
       next:(data)=>{
-        this.router.navigate(['/'])
+        this.router.navigate(['/principal'])
         console.log(data)
       },
       error:(error)=>{
