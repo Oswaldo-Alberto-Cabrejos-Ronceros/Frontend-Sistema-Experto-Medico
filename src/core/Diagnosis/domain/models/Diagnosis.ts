@@ -1,6 +1,7 @@
 export interface Diagnosis{
     id:number,
     name:string,
+    content:string
     image_url:string
 }
 

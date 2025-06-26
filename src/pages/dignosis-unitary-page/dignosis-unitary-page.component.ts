@@ -65,6 +65,7 @@ export class DignosisUnitaryPageComponent implements OnInit {
   diagnosisGet: Diagnosis = {
     id: -1,
     name: '',
+    content:'',
     image_url: '',
   };
 
