@@ -6,10 +6,11 @@ import { HistoryDiagnosisServiceImpl } from '../../core/HistoryDiagnosis/infrast
 import { GetAllHistoriesDiagnosisInfoByUserId } from '../../core/HistoryDiagnosis/application/GetAllHistoriesDiagnosisInfoByUserId';
 import { HistoryInfoDiagnosis } from '../../core/HistoryDiagnosis/domain/models/HistoryDiagnosis';
 import { SessionService } from '../../core/shared/Session/infrastructure/SessionService';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-history-page',
-  imports: [HistoryPrimaryCardComponent, CommonModule],
+  imports: [HistoryPrimaryCardComponent, CommonModule,RouterLink],
   templateUrl: './history-page.component.html',
   styleUrl: './history-page.component.scss',
   providers: [

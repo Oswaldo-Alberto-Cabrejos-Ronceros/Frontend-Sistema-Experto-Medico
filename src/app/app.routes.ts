@@ -50,7 +50,7 @@ export const routes: Routes = [
         component: HistoryPageComponent,
       },
       {
-        path: 'historial/diagnostico',
+        path: 'historial/diagnostico/:id',
         component: DignosisUnitaryPageComponent,
       },
       {
