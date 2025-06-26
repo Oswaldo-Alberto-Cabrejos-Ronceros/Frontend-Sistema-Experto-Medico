@@ -11,4 +11,5 @@ export class HistoryPrimaryCardComponent {
 @Input() diagnosisName:string=''
 @Input() diagnosisDate:string=''
 @Input() diagnosisImageUrl:string=''
+@Input() diagnosisTime:string=''
 }

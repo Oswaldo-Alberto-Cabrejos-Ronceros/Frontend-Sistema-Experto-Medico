@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HistoryDiagnosisService } from '../domain/services/HistoryDiagnosisService';
 import { Observable } from 'rxjs';
-import { HistoryDiagnosis } from '../domain/models/HistoryDiagnosis';
+import {
+  HistoryDiagnosis,
+  HistoryInfoDiagnosis,
+} from '../domain/models/HistoryDiagnosis';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environment/environment';
 
@@ -22,5 +25,13 @@ export class HistoryDiagnosisServiceImpl implements HistoryDiagnosisService {
     userId: number
   ): Observable<HistoryDiagnosis[]> {
     return this.httpClient.get<HistoryDiagnosis[]>(`${this.apiUrl}/${userId}`);
+  }
+
+  getAllHistoriesDiagnosisInfoByUserId(
+    userId: number
+  ): Observable<HistoryInfoDiagnosis[]> {
+    return this.httpClient.get<HistoryInfoDiagnosis[]>(
+      `${this.apiUrl}/info/${userId}`
+    );
   }
 }
