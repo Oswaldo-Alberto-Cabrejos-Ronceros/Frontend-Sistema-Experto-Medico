@@ -18,6 +18,8 @@ import { DiagnosisService } from '../../core/Diagnosis/domain/services/Diagnosis
 import { DiagnosisServiceImpl } from '../../core/Diagnosis/infrastructure/DiagnosisServiceImpl';
 import { Diagnosticar } from '../../core/Diagnosis/application/Diagnosticar';
 import { Router } from '@angular/router';
+import { DiagnosticarSession } from '../../core/Diagnosis/application/DiagnosticarSession';
+import { SessionService } from '../../core/shared/Session/infrastructure/SessionService';
 
 @Component({
   selector: 'app-symptoms-page',
@@ -43,14 +45,19 @@ import { Router } from '@angular/router';
     },
     GetAllSymtoms,
     {
-      provide:DiagnosisService,
-      useClass:DiagnosisServiceImpl
+      provide: DiagnosisService,
+      useClass: DiagnosisServiceImpl,
     },
-    Diagnosticar
+    DiagnosticarSession,
   ],
 })
 export class SymptomsPageComponent implements OnInit {
-  constructor(private getAllSymtoms: GetAllSymtoms, private diagnosticar:Diagnosticar,private router:Router) {}
+  constructor(
+    private getAllSymtoms: GetAllSymtoms,
+    private diagnosticarSession: DiagnosticarSession,
+    private sessionService: SessionService,
+    private router: Router
+  ) {}
   ngOnInit(): void {
     this.getAllSymtoms.execute().subscribe({
       next: (data) => {
@@ -130,18 +137,24 @@ export class SymptomsPageComponent implements OnInit {
     },
   ];
   //for send symptoms
-  sendSymptoms=()=>{
-    console.log(this.selectedSymptoms)
-    const symptomsIds:string[]=this.selectedSymptoms.map((symptom)=>symptom.id.toString())
-    console.log(symptomsIds)
-    this.diagnosticar.execute(symptomsIds).subscribe({
-      next:(data)=>{
-        console.log('Diagnostico',data)
-        this.router.navigate(['/principal/sintomas/diagnostico',data.diagnostico_id])
+  sendSymptoms = () => {
+    const userId = this.sessionService.getUserId();
+    console.log(this.selectedSymptoms);
+    const symptomsIds: string[] = this.selectedSymptoms.map((symptom) =>
+      symptom.id.toString()
+    );
+    console.log(symptomsIds);
+    this.diagnosticarSession.execute(symptomsIds, userId).subscribe({
+      next: (data) => {
+        console.log('Diagnostico', data);
+        this.router.navigate([
+          '/principal/sintomas/diagnostico',
+          data.diagnostico_id,
+        ]);
       },
-      error:(err)=>{
-        console.error(err)
-      }
-    })
-  }
+      error: (err) => {
+        console.error(err);
+      },
+    });
+  };
 }

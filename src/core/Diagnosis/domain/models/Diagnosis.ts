@@ -8,3 +8,12 @@ export interface Diagnosis{
 export interface DiagnosisResponse{
   diagnostico_id:number
 }
+
+export interface DiagnosisRequest{
+  sintomas:string[]
+}
+
+export interface DiagnosisSessionRequest{
+  diagnosticoRequest:DiagnosisRequest,
+  user_id:number
+}

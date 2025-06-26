@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Diagnosis, DiagnosisResponse } from '../domain/models/Diagnosis';
+import { Diagnosis, DiagnosisRequest, DiagnosisResponse, DiagnosisSessionRequest } from '../domain/models/Diagnosis';
 import { DiagnosisService } from '../domain/services/DiagnosisService';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environment/environment';
@@ -13,14 +13,31 @@ export class DiagnosisServiceImpl implements DiagnosisService {
   constructor(private httpClient: HttpClient) {}
 
   diagnosticar(symptomsId: string[]): Observable<DiagnosisResponse> {
-    const symtomsIdRequest:{sintomas:string[]}={
-      sintomas:symptomsId
-    }
+    const symtomsIdRequest: DiagnosisRequest = {
+      sintomas: symptomsId,
+    };
     return this.httpClient.post<DiagnosisResponse>(
       `${this.apiUrl}/diagnostico`,
       symtomsIdRequest
     );
   }
+
+  diagnosticarSession(
+    symptomsId: string[],
+    userId: number
+  ): Observable<DiagnosisResponse> {
+    const diagnosisRequest: DiagnosisSessionRequest = {
+      diagnosticoRequest: {
+        sintomas: symptomsId,
+      },
+      user_id: userId,
+    };
+    return this.httpClient.post<DiagnosisResponse>(
+      `${this.apiUrl}/diagnostico/session`,
+      diagnosisRequest
+    );
+  }
+
   getDiagnosisById(diagnosisId: number): Observable<Diagnosis> {
     return this.httpClient.get<Diagnosis>(
       `${this.apiUrl}/diagnosticos/${diagnosisId}`
