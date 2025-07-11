@@ -16,7 +16,6 @@ import { GetAllSymtoms } from '../../core/Symptom/application/GetAllSymptoms';
 import { Symptom } from '../../core/Symptom/domain/models/Symptom';
 import { DiagnosisService } from '../../core/Diagnosis/domain/services/DiagnosisService';
 import { DiagnosisServiceImpl } from '../../core/Diagnosis/infrastructure/DiagnosisServiceImpl';
-import { Diagnosticar } from '../../core/Diagnosis/application/Diagnosticar';
 import { Router } from '@angular/router';
 import { DiagnosticarSession } from '../../core/Diagnosis/application/DiagnosticarSession';
 import { SessionService } from '../../core/shared/Session/infrastructure/SessionService';
