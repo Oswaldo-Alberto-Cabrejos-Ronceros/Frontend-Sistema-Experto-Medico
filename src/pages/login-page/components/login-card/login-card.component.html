@@ -20,6 +20,10 @@
     <!-- footer -->
      <ng-template #footer>
       <p-button label="Iniciar sesión" type="submit" rounded styleClass="w-full"/>
+      <div class="flex gap-2 mt-4">
+        <p>¿No tienes cuenta? </p><a class="transition-colors duration-200 hover:text-primary" routerLink="/auth/register">Registrate</a>
+      </div>
+
      </ng-template>
   </p-card>
 </form>

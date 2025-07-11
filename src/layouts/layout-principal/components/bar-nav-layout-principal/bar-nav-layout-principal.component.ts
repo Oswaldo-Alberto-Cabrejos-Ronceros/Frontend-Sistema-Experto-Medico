@@ -58,10 +58,6 @@ export class BarNavLayoutPrincipalComponent {
       route: '/principal/historial',
     },
     {
-      label: 'Hospitales',
-      route: '/principal/hospitales',
-    },
-    {
       label: 'Ayuda',
       route: '/principal/ayuda',
     },
@@ -108,6 +104,7 @@ export class BarNavLayoutPrincipalComponent {
   //for logout
   logOut = () => {
     this.router.navigate(['/']);
+    sessionStorage.clear()
   };
 
   // user

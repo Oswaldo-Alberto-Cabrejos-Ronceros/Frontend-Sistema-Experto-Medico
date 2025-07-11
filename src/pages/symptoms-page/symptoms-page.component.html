@@ -10,12 +10,12 @@
                   <i class="pi pi-search"></i>
                 </p-inputgroup-addon>
                 <p-floatlabel variant="in">
-                  <input pInputText id="in_label_search" />
+                  <input  [(ngModel)]="filtler" pInputText id="in_label_search" />
                   <label for="in_label_search">Buscar sintomas</label>
                 </p-floatlabel>
               </p-inputgroup>
               <!-- select for categories symptoms -->
-              <p-floatlabel class="w-full max-w-xs" variant="in">
+              <p-floatlabel class="w-full max-w-xs" variant="in" hidden>
                 <p-select
                   inputId="in_label_categories_symptoms"
                   [options]="categoriesSymptoms"
@@ -29,7 +29,7 @@
             <div
               class="w-full py-3 flex-1 grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2"
             >
-              <div *ngFor="let symptom of symptoms" class="flex items-center">
+              <div *ngFor="let symptom of elementosFiltrados" class="flex items-center">
                 <p-checkbox
                   [inputId]="symptom.id.toString()"
                   name="group"

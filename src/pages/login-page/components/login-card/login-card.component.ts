@@ -10,9 +10,10 @@ import {
   FormControl
 } from '@angular/forms';
 import { LoginRequest } from '../../../../core/Authentication/domain/models/Authentication';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-login-card',
-  imports: [CardModule,InputTextModule,FloatLabel,PasswordModule,ButtonModule,ReactiveFormsModule],
+  imports: [CardModule,InputTextModule,FloatLabel,PasswordModule,ButtonModule,ReactiveFormsModule,RouterLink],
   templateUrl: './login-card.component.html',
   styleUrl: './login-card.component.scss'
 })

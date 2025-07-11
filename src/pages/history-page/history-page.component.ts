@@ -7,10 +7,11 @@ import { GetAllHistoriesDiagnosisInfoByUserId } from '../../core/HistoryDiagnosi
 import { HistoryInfoDiagnosis } from '../../core/HistoryDiagnosis/domain/models/HistoryDiagnosis';
 import { SessionService } from '../../core/shared/Session/infrastructure/SessionService';
 import { RouterLink } from '@angular/router';
+import { Button } from 'primeng/button';
 
 @Component({
   selector: 'app-history-page',
-  imports: [HistoryPrimaryCardComponent, CommonModule,RouterLink],
+  imports: [HistoryPrimaryCardComponent, CommonModule,RouterLink,Button],
   templateUrl: './history-page.component.html',
   styleUrl: './history-page.component.scss',
   providers: [

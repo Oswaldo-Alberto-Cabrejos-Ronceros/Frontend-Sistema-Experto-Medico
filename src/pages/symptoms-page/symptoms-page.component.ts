@@ -156,4 +156,21 @@ export class SymptomsPageComponent implements OnInit {
       },
     });
   };
+  filtler:string=''
+
+    get elementosFiltrados() {
+    if (!this.filtler.trim()) return this.symptoms;
+
+    const filtroLower = this.filtler.toLowerCase();
+
+    const coincidencias = this.symptoms.filter(e =>
+      e.name.toLowerCase().includes(filtroLower)
+    );
+
+    const noCoincidencias = this.symptoms.filter(e =>
+      !e.name.toLowerCase().includes(filtroLower)
+    );
+
+    return [...coincidencias, ...noCoincidencias];
+  }
 }

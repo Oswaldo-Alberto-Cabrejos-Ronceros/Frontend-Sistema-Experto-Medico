@@ -12,6 +12,7 @@ import {
   FormControl
 } from '@angular/forms';
 import { UserRequest } from '../../../../core/Authentication/domain/models/Authentication';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-register-card',
@@ -23,7 +24,7 @@ import { UserRequest } from '../../../../core/Authentication/domain/models/Authe
     ButtonModule,
     DatePickerModule,
     SelectModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule,RouterLink
   ],
   templateUrl: './register-card.component.html',
   styleUrl: './register-card.component.scss',
