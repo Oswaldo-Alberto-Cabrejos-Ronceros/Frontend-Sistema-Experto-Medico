@@ -19,10 +19,16 @@
     </div>
     <!-- pasos a seguir -->
     <div class="flex flex-col gap-2">
-      <h3 class="h3">Pasos a seguir</h3>
+      <h3 class="h3">Posibles causas</h3>
       <ul>
-        <li class="list-disc list-inside" *ngFor="let paso of diagnosis.pasosSeguir">
-          {{paso}}
+        <li class="list-disc list-inside" *ngIf="posiblesCausas">
+          {{posiblesCausas.c1}}
+        </li>
+        <li class="list-disc list-inside" *ngIf="posiblesCausas">
+          {{posiblesCausas.c2}}
+        </li>
+                <li class="list-disc list-inside" *ngIf="posiblesCausas">
+          {{posiblesCausas.c3}}
         </li>
       </ul>
     </div>

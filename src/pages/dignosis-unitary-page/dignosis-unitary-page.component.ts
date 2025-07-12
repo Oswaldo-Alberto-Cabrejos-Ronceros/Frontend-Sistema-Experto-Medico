@@ -13,6 +13,7 @@ import { GetRecommendationsByDiagnosis } from '../../core/RecommendationDiagnosi
 import { PosiblesCausasServices } from '../../core/PosiblesCausas/domain/services/PosiblesCausasServices';
 import { PosiblesCausasServiceImpl } from '../../core/PosiblesCausas/infrastructure/PosiblesCausasServiceImp';
 import { GetPosiblesCausasByDiagnosisId } from '../../core/PosiblesCausas/application/GetPosiblesCausasByDiagnosisId';
+import { PosiblesCausas } from '../../core/PosiblesCausas/domain/models/PosiblesCausas';
 
 @Component({
   selector: 'app-dignosis-unitary-page',
@@ -68,7 +69,14 @@ export class DignosisUnitaryPageComponent implements OnInit {
           console.error('Error al obtener las recomendaciones del diagnostico',error)
         }
       })
-      this.getPosiblesCausasByDiagnosisId.execute(numberId).subscribe
+      this.getPosiblesCausasByDiagnosisId.execute(numberId).subscribe({
+        next:(data)=>{
+          this.posiblesCausas=data
+        },
+        error:(error)=>{
+          console.error('Error al cargas las posibles causas')
+        }
+      })
     }
   }
 
@@ -80,7 +88,7 @@ export class DignosisUnitaryPageComponent implements OnInit {
   };
 
   diagnosisRecomendation:RecomendationDiagnosis[]=[]
-  posiblesCausas:PosiblesCausasServiceImpl|null=null
+  posiblesCausas:PosiblesCausas|null=null
 
   diagnosis: {
     content: string;
