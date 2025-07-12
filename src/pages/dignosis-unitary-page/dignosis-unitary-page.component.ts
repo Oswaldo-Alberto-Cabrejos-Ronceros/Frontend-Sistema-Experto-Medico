@@ -10,6 +10,9 @@ import { RecomendationDiagnosis } from '../../core/RecommendationDiagnosis/domai
 import { RecomendationDiagnosisService } from '../../core/RecommendationDiagnosis/domain/services/RecommendationDiagnosisService';
 import { RecomendationDiagnosisServiceImpl } from '../../core/RecommendationDiagnosis/infrastructure/RecommendationDiagnosisServiceImpl';
 import { GetRecommendationsByDiagnosis } from '../../core/RecommendationDiagnosis/application/GetRecommendationsByDiagnosis';
+import { PosiblesCausasServices } from '../../core/PosiblesCausas/domain/services/PosiblesCausasServices';
+import { PosiblesCausasServiceImpl } from '../../core/PosiblesCausas/infrastructure/PosiblesCausasServiceImp';
+import { GetPosiblesCausasByDiagnosisId } from '../../core/PosiblesCausas/application/GetPosiblesCausasByDiagnosisId';
 
 @Component({
   selector: 'app-dignosis-unitary-page',
@@ -26,14 +29,20 @@ import { GetRecommendationsByDiagnosis } from '../../core/RecommendationDiagnosi
       provide:RecomendationDiagnosisService,
       useClass:RecomendationDiagnosisServiceImpl
     },
-    GetRecommendationsByDiagnosis
+    GetRecommendationsByDiagnosis,
+    {
+      provide:PosiblesCausasServices,
+      useClass:PosiblesCausasServiceImpl
+    },
+    GetPosiblesCausasByDiagnosisId
   ],
 })
 export class DignosisUnitaryPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private getDiagnosisById: GetDiagnosisById,
-    private getRecommendationByDiagnosis:GetRecommendationsByDiagnosis
+    private getRecommendationByDiagnosis:GetRecommendationsByDiagnosis,
+    private getPosiblesCausasByDiagnosisId:GetPosiblesCausasByDiagnosisId
   ) {}
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -59,6 +68,7 @@ export class DignosisUnitaryPageComponent implements OnInit {
           console.error('Error al obtener las recomendaciones del diagnostico',error)
         }
       })
+      this.getPosiblesCausasByDiagnosisId.execute(numberId).subscribe
     }
   }
 
@@ -70,6 +80,7 @@ export class DignosisUnitaryPageComponent implements OnInit {
   };
 
   diagnosisRecomendation:RecomendationDiagnosis[]=[]
+  posiblesCausas:PosiblesCausasServiceImpl|null=null
 
   diagnosis: {
     content: string;
