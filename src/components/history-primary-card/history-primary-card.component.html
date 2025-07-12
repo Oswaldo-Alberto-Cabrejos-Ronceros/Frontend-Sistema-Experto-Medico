@@ -1,0 +1,15 @@
+<p-card styleClass="w-full max-w-2xl overflow-hidden hover:opacity-75 transition-opacity cursor-pointer">
+  <ng-template #header>
+    <img [alt]="diagnosisName" class="w-full object-cover h-40 " [src]="diagnosisImageUrl" />
+  </ng-template>
+  <ng-template #title>
+    <p>{{diagnosisName}}</p>
+  </ng-template>
+  <ng-template #subtitle>
+    <div class="w-full flex justify-between">
+ <p>{{diagnosisDate}}</p>
+ <p>{{diagnosisTime}}</p>
+    </div>
+
+  </ng-template>
+</p-card>

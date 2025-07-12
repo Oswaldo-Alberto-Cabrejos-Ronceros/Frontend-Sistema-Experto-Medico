@@ -1,0 +1,29 @@
+<form class="w-md" [formGroup]="formLogin" (ngSubmit)="emitLogin()">
+  <p-card>
+    <!-- title -->
+    <ng-template #title>
+      Inicio de sesión
+    </ng-template>
+    <!-- content -->
+    <div class="w-full flex flex-col gap-2">
+      <p>Correo</p>
+      <p-floatLabel variant="in">
+        <input formControlName="email" class="w-full" type="text" pInputText id="in_label_email" autocomplete="off" />
+        <label for="in_label_email">Correo</label>
+      </p-floatLabel>
+      <p>Contraseña</p>
+      <p-floatLabel variant="in">
+        <p-password formControlName="password" styleClass="w-full" inputStyleClass="w-full" toggleMask [feedback]="false" inputId="in_label_password" />
+        <label for="in_label_password">Contraseña</label>
+      </p-floatLabel>
+    </div>
+    <!-- footer -->
+     <ng-template #footer>
+      <p-button label="Iniciar sesión" type="submit" rounded styleClass="w-full"/>
+      <div class="flex gap-2 mt-4">
+        <p>¿No tienes cuenta? </p><a class="transition-colors duration-200 hover:text-primary" routerLink="/auth/register">Registrate</a>
+      </div>
+
+     </ng-template>
+  </p-card>
+</form>
