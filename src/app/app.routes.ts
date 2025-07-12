@@ -7,6 +7,7 @@ import { HistoryPageComponent } from '../pages/history-page/history-page.compone
 import { HospitalsPageComponent } from '../pages/hospitals-page/hospitals-page.component';
 import { HelpPageComponent } from '../pages/help-page/help-page.component';
 import { DignosisUnitaryPageComponent } from '../pages/dignosis-unitary-page/dignosis-unitary-page.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
@@ -42,7 +43,7 @@ export const routes: Routes = [
         component: SymptomsPageComponent,
       },
       {
-        path: 'sintomas/diagnostico',
+        path: 'sintomas/diagnostico/:id',
         component: DignosisUnitaryPageComponent,
       },
       {
@@ -50,7 +51,7 @@ export const routes: Routes = [
         component: HistoryPageComponent,
       },
       {
-        path: 'historial/diagnostico',
+        path: 'historial/diagnostico/:id',
         component: DignosisUnitaryPageComponent,
       },
       {
@@ -62,5 +63,6 @@ export const routes: Routes = [
         component: HelpPageComponent,
       },
     ],
+    canActivate:[authGuard]
   },
 ];

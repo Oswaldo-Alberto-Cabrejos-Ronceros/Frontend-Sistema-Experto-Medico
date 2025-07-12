@@ -1,60 +1,122 @@
-<div class="w-md">
+<form class="w-md" [formGroup]="formRegister" (ngSubmit)="emitRegister()">
   <p-card>
-    <!-- title -->
     <ng-template #title>
       Registro
     </ng-template>
-    <!-- content -->
-    <div class="w-full flex flex-col gap-2">
-      <!-- name -->
-      <p>Nombres</p>
-      <p-floatLabel variant="in">
-        <input class="w-full" type="text" pInputText id="in_label_name" autocomplete="off" />
-        <label for="in_label_name">Nombres</label>
-      </p-floatLabel>
 
-      <!-- lastnames -->
+    <div class="w-full grid grid-cols-2 gap-2">
+      <!-- Nombres -->
+      <div>
+        <p class="mb-2">Nombres</p>
+        <p-floatLabel variant="in">
+          <input formControlName="names" class="w-full" type="text" pInputText id="in_label_name" autocomplete="off" />
+          <label for="in_label_name">Nombres</label>
+        </p-floatLabel>
+      </div>
 
-      <p>Apellidos</p>
-      <p-floatLabel variant="in">
-        <input class="w-full" type="text" pInputText id="in_label_lastname" autocomplete="off" />
-        <label for="in_label_lastname">Apellidos</label>
-      </p-floatLabel>
+      <!-- Apellidos -->
+      <div>
+        <p class="mb-2">Apellidos</p>
+        <p-floatLabel variant="in">
+          <input formControlName="lastnames" class="w-full" type="text" pInputText id="in_label_lastname" autocomplete="off" />
+          <label for="in_label_lastname">Apellidos</label>
+        </p-floatLabel>
+      </div>
 
-      <!-- gender -->
-      <p>Género</p>
-      <p-floatlabel class="w-full" variant="in">
-        <p-select inputId="in_label_gender" [options]="genders" optionLabel="label" styleClass="w-full" />
-        <label for="in_label_gender">Género</label>
-      </p-floatlabel>
-      <!-- birthDate -->
-      <p>Fecha de nacimiento</p>
-      <p-floatlabel variant="in">
-        <p-datepicker inputId="in_label" styleClass="w-full" inputStyleClass="w-full" showIcon iconDisplay="input" />
-        <label for="in_label_birthdate">Fecha de nacimiento</label>
-      </p-floatlabel>
-      <!-- email -->
-      <p>Correo</p>
-      <p-floatLabel variant="in">
-        <input class="w-full" type="text" pInputText id="in_label_email" autocomplete="off" />
-        <label for="in_label_email">Correo</label>
-      </p-floatLabel>
-      <!-- password -->
-      <p>Contraseña</p>
-      <p-floatLabel variant="in">
-        <p-password styleClass="w-full" inputStyleClass="w-full" toggleMask inputId="in_label_password" />
-        <label for="in_label_password">Contraseña</label>
-      </p-floatLabel>
-      <!-- confirm password -->
-      <p>Confirmar contraseña</p>
-      <p-floatLabel variant="in">
-        <p-password styleClass="w-full" inputStyleClass="w-full" toggleMask inputId="in_label_confirm_password" />
-        <label for="in_label_confirm_password">Confirmar contraseña</label>
-      </p-floatLabel>
+      <!-- Género -->
+      <div>
+        <p class="mb-2">Género</p>
+        <p-floatLabel variant="in">
+          <p-select optionValue="value" formControlName="gender" inputId="in_label_gender"
+            [options]="genders" optionLabel="label" styleClass="w-full" />
+          <label for="in_label_gender">Género</label>
+        </p-floatLabel>
+      </div>
+
+      <!-- Fecha de nacimiento -->
+      <div>
+        <p class="mb-2">Fecha de nacimiento</p>
+        <p-floatLabel variant="in">
+          <p-datepicker dateFormat="yy-mm-dd" formControlName="birthdate" inputId="in_label_birthdate"
+            styleClass="w-full" inputStyleClass="w-full" showIcon iconDisplay="input" />
+          <label for="in_label_birthdate">Fecha de nacimiento</label>
+        </p-floatLabel>
+      </div>
+
+      <!-- Dirección -->
+      <div>
+        <p class="mb-2">Dirección</p>
+        <p-floatLabel variant="in">
+          <input formControlName="address" class="w-full" type="text" pInputText id="in_label_address" autocomplete="off" />
+          <label for="in_label_address">Dirección</label>
+        </p-floatLabel>
+      </div>
+
+      <!-- Departamento -->
+      <div>
+        <p class="mb-2">Departamento</p>
+        <p-floatLabel variant="in">
+          <p-select optionValue="value" formControlName="department" inputId="in_label_department"
+            [options]="departaments" optionLabel="label" styleClass="w-full" />
+          <label for="in_label_department">Departamento</label>
+        </p-floatLabel>
+      </div>
+
+      <!-- Provincia -->
+      <div>
+        <p class="mb-2">Provincia</p>
+        <p-floatLabel variant="in">
+          <p-select optionValue="value" formControlName="province" inputId="in_label_province"
+            [options]="provinces" optionLabel="label" styleClass="w-full" />
+          <label for="in_label_province">Provincia</label>
+        </p-floatLabel>
+      </div>
+
+      <!-- Distrito -->
+      <div>
+        <p class="mb-2">Distrito</p>
+        <p-floatLabel variant="in">
+          <p-select optionValue="value" formControlName="district" inputId="in_label_district"
+            [options]="districts" optionLabel="label" styleClass="w-full" />
+          <label for="in_label_district">Distrito</label>
+        </p-floatLabel>
+      </div>
+
+      <!-- Correo -->
+      <div>
+        <p class="mb-2">Correo</p>
+        <p-floatLabel variant="in">
+          <input formControlName="email" class="w-full" type="email" pInputText id="in_label_email" autocomplete="off" />
+          <label for="in_label_email">Correo</label>
+        </p-floatLabel>
+      </div>
+
+      <!-- Contraseña -->
+      <div>
+        <p class="mb-2">Contraseña</p>
+        <p-floatLabel variant="in">
+          <p-password formControlName="password" styleClass="w-full" inputStyleClass="w-full" toggleMask
+            inputId="in_label_password" />
+          <label for="in_label_password">Contraseña</label>
+        </p-floatLabel>
+      </div>
+
+      <!-- Confirmar contraseña -->
+      <div>
+        <p class="mb-2">Confirmar contraseña</p>
+        <p-floatLabel variant="in">
+          <p-password formControlName="confirmPassword" styleClass="w-full" inputStyleClass="w-full" toggleMask
+            inputId="in_label_confirm_password" />
+          <label for="in_label_confirm_password">Confirmar contraseña</label>
+        </p-floatLabel>
+      </div>
     </div>
-    <!-- footer -->
+
     <ng-template #footer>
-      <p-button label="Registrarse" rounded styleClass="w-full" />
+      <p-button label="Registrarse" type="submit" rounded styleClass="w-full" />
+            <div class="flex gap-2 mt-4">
+        <p>Ya tienes una cuenta? </p><a class="transition-colors duration-200 hover:text-primary" routerLink="/auth/login">Inicia sesión</a>
+      </div>
     </ng-template>
   </p-card>
-</div>
+</form>

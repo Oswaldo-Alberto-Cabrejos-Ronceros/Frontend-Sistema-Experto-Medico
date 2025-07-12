@@ -2,7 +2,7 @@
 <p-drawer [(visible)]="showDrawerPefil" header="Perfil">
   <div *ngFor="let item of itemsPerfil" class="mb-2">
     <p class="font-bold mb-0.5">{{item.title}}</p>
-    <p>{{user[item.key]}}</p>
+    <p>{{userInfo[item.key]}}</p>
   </div>
 
 </p-drawer>

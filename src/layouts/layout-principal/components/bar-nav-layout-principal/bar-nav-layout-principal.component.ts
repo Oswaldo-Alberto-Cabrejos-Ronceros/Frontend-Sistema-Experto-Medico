@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuItem } from 'primeng/api';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { RippleModule } from 'primeng/ripple';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { DrawerModule } from 'primeng/drawer';
 import { CommonModule } from '@angular/common';
-import { User } from '../../../../models/User';
+import type { User } from '../../../../core/User/domain/models/User';
+import type { User as UserView } from '../../../../models/User';
 
 @Component({
   selector: 'app-bar-nav-layout-principal',
@@ -21,17 +22,32 @@ import { User } from '../../../../models/User';
     ConfirmDialog,
     TieredMenuModule,
     CommonModule,
-    DrawerModule
+    DrawerModule,
   ],
   templateUrl: './bar-nav-layout-principal.component.html',
   styleUrl: './bar-nav-layout-principal.component.scss',
   providers: [ConfirmationService],
 })
 export class BarNavLayoutPrincipalComponent {
+  @Input() userInfo: User = {
+    names: '',
+    lastnames: '',
+    gender: '',
+    birthdate: '',
+    id: 0,
+    address: '',
+    district: '',
+    province: '',
+    department: '',
+    email: '',
+  };
   //inyectamos confirmationService
-  constructor(private confirmationService: ConfirmationService) {}
+  constructor(
+    private confirmationService: ConfirmationService,
+    private router: Router
+  ) {}
   //for show drawer
-  showDrawerPefil:boolean=false;
+  showDrawerPefil: boolean = false;
   items: MenuItem[] = [
     {
       label: 'Sintomas',
@@ -40,10 +56,6 @@ export class BarNavLayoutPrincipalComponent {
     {
       label: 'Historial',
       route: '/principal/historial',
-    },
-    {
-      label: 'Hospitales',
-      route: '/principal/hospitales',
     },
     {
       label: 'Ayuda',
@@ -82,37 +94,59 @@ export class BarNavLayoutPrincipalComponent {
         severity: 'danger',
       },
       accept: () => {
-        console.log('Si');
+        this.logOut();
       },
       reject: () => {
         console.log('No');
       },
     });
   }
+  //for logout
+  logOut = () => {
+    this.router.navigate(['/']);
+    sessionStorage.clear()
+  };
+
   // user
-    user: User = {
+  user: UserView = {
     names: 'Oswaldo Alberto',
     lastnames: 'Cabrejos Ronceros',
     gender: 'Masculino',
     birthdate: '05/10/2004',
   };
 
-  itemsPerfil:{title:string,key: keyof User}[]=[
+  itemsPerfil: { title: string; key: keyof User }[] = [
     {
-      title:'Nombres',
-      key:'names'
+      title: 'Nombres',
+      key: 'names',
     },
     {
-      title:'Apellidos',
-      key:'lastnames'
+      title: 'Apellidos',
+      key: 'lastnames',
     },
     {
-      title:'Género',
-      key:'gender'
+      title: 'Género',
+      key: 'gender',
     },
     {
-      title:'Fecha de nacimiento',
-      key:'birthdate'
+      title: 'Fecha de nacimiento',
+      key: 'birthdate',
+    },
+    {
+      title:'Dirección',
+      key:"address"
+    },
+    {
+      title:'Departamento',
+      key:'department'
+    },
+    {
+      title:'Provincia',
+      key:'province'
+    },
+    {
+      title:'Distrito',
+      key:'district'
     }
-  ]
+  ];
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StepperModule } from 'primeng/stepper';
 import { ButtonModule } from 'primeng/button';
 import { InputGroupModule } from 'primeng/inputgroup';
@@ -10,6 +10,15 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RatingModule } from 'primeng/rating';
+import { SymptomService } from '../../core/Symptom/domain/services/SymptomService';
+import { SymptomServiceImpl } from '../../core/Symptom/infrastructure/SymptomServiceImpl';
+import { GetAllSymtoms } from '../../core/Symptom/application/GetAllSymptoms';
+import { Symptom } from '../../core/Symptom/domain/models/Symptom';
+import { DiagnosisService } from '../../core/Diagnosis/domain/services/DiagnosisService';
+import { DiagnosisServiceImpl } from '../../core/Diagnosis/infrastructure/DiagnosisServiceImpl';
+import { Router } from '@angular/router';
+import { DiagnosticarSession } from '../../core/Diagnosis/application/DiagnosticarSession';
+import { SessionService } from '../../core/shared/Session/infrastructure/SessionService';
 
 @Component({
   selector: 'app-symptoms-page',
@@ -24,12 +33,43 @@ import { RatingModule } from 'primeng/rating';
     CheckboxModule,
     CommonModule,
     FormsModule,
-    RatingModule
+    RatingModule,
   ],
   templateUrl: './symptoms-page.component.html',
   styleUrl: './symptoms-page.component.scss',
+  providers: [
+    {
+      provide: SymptomService,
+      useClass: SymptomServiceImpl,
+    },
+    GetAllSymtoms,
+    {
+      provide: DiagnosisService,
+      useClass: DiagnosisServiceImpl,
+    },
+    DiagnosticarSession,
+  ],
 })
-export class SymptomsPageComponent {
+export class SymptomsPageComponent implements OnInit {
+  constructor(
+    private getAllSymtoms: GetAllSymtoms,
+    private diagnosticarSession: DiagnosticarSession,
+    private sessionService: SessionService,
+    private router: Router
+  ) {}
+  ngOnInit(): void {
+    this.getAllSymtoms.execute().subscribe({
+      next: (data) => {
+        this.symptoms = data;
+      },
+      error: (err) => {
+        console.error('Error al obtener sintomas', err);
+      },
+    });
+  }
+
+  symptoms: Symptom[] = [];
+
   //symptoms
   //options for categories symptoms
   categoriesSymptoms: { label: string; value: number }[] = [
@@ -48,30 +88,7 @@ export class SymptomsPageComponent {
   ];
 
   //for sumptoms selecteds
-  selectedSymptoms: { name: string; key: string }[] = [];
-
-  symptoms: { name: string; key: string }[] = [
-    { name: 'Tos', key: '1' },
-    { name: 'Fiebre', key: '2' },
-    { name: 'Dolor de cabeza', key: '3' },
-    { name: 'Congestión nasal', key: '4' },
-    { name: 'Dolor de garganta', key: '5' },
-    { name: 'Fatiga', key: '6' },
-    { name: 'Náuseas', key: '7' },
-    { name: 'Vómitos', key: '8' },
-    { name: 'Diarrea', key: '9' },
-    { name: 'Dolor abdominal', key: '10' },
-    { name: 'Escalofríos', key: '11' },
-    { name: 'Sudoración excesiva', key: '12' },
-    { name: 'Dificultad para respirar', key: '13' },
-    { name: 'Dolor en el pecho', key: '14' },
-    { name: 'Pérdida del apetito', key: '15' },
-    { name: 'Pérdida del gusto', key: '16' },
-    { name: 'Pérdida del olfato', key: '17' },
-    { name: 'Mareos', key: '18' },
-    { name: 'Palpitaciones', key: '19' },
-    { name: 'Dolor muscular', key: '20' },
-  ];
+  selectedSymptoms: Symptom[] = [];
 
   hoursOptions: { label: string; value: number }[] = [
     {
@@ -118,4 +135,42 @@ export class SymptomsPageComponent {
       value: 5,
     },
   ];
+  //for send symptoms
+  sendSymptoms = () => {
+    const userId = this.sessionService.getUserId();
+    console.log(this.selectedSymptoms);
+    const symptomsIds: string[] = this.selectedSymptoms.map((symptom) =>
+      symptom.id.toString()
+    );
+    console.log(symptomsIds);
+    this.diagnosticarSession.execute(symptomsIds, userId).subscribe({
+      next: (data) => {
+        console.log('Diagnostico', data);
+        this.router.navigate([
+          '/principal/sintomas/diagnostico',
+          data.diagnostico_id,
+        ]);
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
+  };
+  filtler:string=''
+
+    get elementosFiltrados() {
+    if (!this.filtler.trim()) return this.symptoms;
+
+    const filtroLower = this.filtler.toLowerCase();
+
+    const coincidencias = this.symptoms.filter(e =>
+      e.name.toLowerCase().includes(filtroLower)
+    );
+
+    const noCoincidencias = this.symptoms.filter(e =>
+      !e.name.toLowerCase().includes(filtroLower)
+    );
+
+    return [...coincidencias, ...noCoincidencias];
+  }
 }

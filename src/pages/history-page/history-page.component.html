@@ -1,7 +1,15 @@
 <div class="w-full min-h-screen flex flex-col gap-2">
   <h3 class="h3">Historial</h3>
-  <div class="w-full mt-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-    <app-history-primary-card *ngFor="let history of histories" [diagnosisName]="history.diagnosisName"
-      [diagnosisDate]="history.diagnosisDate" [diagnosisImageUrl]="history.diagnosisImageUrl" />
+  <div *ngIf="historiesGet.length>0" class="w-full mt-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+    <app-history-primary-card *ngFor="let history of historiesGet"
+      [routerLink]="`/principal/historial/diagnostico/${history.diagnosis_id}`" [diagnosisName]="history.diagnosis_name"
+      [diagnosisDate]="history.fecha" [diagnosisImageUrl]="history.diagnosis_url_image"
+      [diagnosisTime]="history.hora" />
+  </div>
+  <div class="size-full flex items-center justify-center" *ngIf="historiesGet.length===0">
+    <p>
+      No hay diagnosticos registrados
+    </p>
+    <p-button [routerLink]="" label="Ingrese sus sintomas"></p-button>
   </div>
 </div>
