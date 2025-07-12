@@ -56,11 +56,7 @@ export class BarNavLayoutPrincipalComponent {
     {
       label: 'Historial',
       route: '/principal/historial',
-    },
-    {
-      label: 'Ayuda',
-      route: '/principal/ayuda',
-    },
+    }
   ];
 
   perfilMenuItems: MenuItem[] = [
